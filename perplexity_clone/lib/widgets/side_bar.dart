@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perplexity_clone/theme/app_color.dart';
+import 'package:perplexity_clone/widgets/nav_bar_buttons.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -15,7 +16,7 @@ class _SideBarState extends State<SideBar> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
-      width: isCollapsed ? 64 : 125,
+      width: isCollapsed ? 64 : 155,
       color: AppColors.sideNav,
       child: Column(
         crossAxisAlignment: isCollapsed
@@ -27,54 +28,34 @@ class _SideBarState extends State<SideBar> {
           Icon(Icons.auto_awesome_mosaic, color: Colors.white, size: 30),
 
           const SizedBox(height: 24),
-
-          Row(
-            mainAxisAlignment: isCollapsed
-                ? MainAxisAlignment.center
-                : MainAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-                child: Icon(Icons.add, color: AppColors.iconGrey, size: 24),
-              ),
-              isCollapsed
-                  ? const SizedBox()
-                  : Text(
-                      "Home",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-            ],
+          NavBarButtons(
+            isCollapsed: isCollapsed,
+            text: 'Home',
+            icon: Icons.add,
           ),
 
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-            child: Icon(Icons.search, color: AppColors.iconGrey, size: 24),
+          NavBarButtons(
+            isCollapsed: isCollapsed,
+            text: 'Search',
+            icon: Icons.search,
           ),
 
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-            child: Icon(Icons.language, color: AppColors.iconGrey, size: 24),
+          NavBarButtons(
+            isCollapsed: isCollapsed,
+            text: 'Languages',
+            icon: Icons.language,
           ),
 
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-            child: Icon(
-              Icons.auto_awesome,
-              color: AppColors.iconGrey,
-              size: 24,
-            ),
+          NavBarButtons(
+            isCollapsed: isCollapsed,
+            text: 'Discover',
+            icon: Icons.auto_awesome,
           ),
 
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-            child: Icon(
-              Icons.cloud_outlined,
-              color: AppColors.iconGrey,
-              size: 24,
-            ),
+          NavBarButtons(
+            isCollapsed: isCollapsed,
+            text: 'Library',
+            icon: Icons.cloud_outlined,
           ),
 
           const Spacer(),
