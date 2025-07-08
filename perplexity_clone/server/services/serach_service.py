@@ -1,3 +1,7 @@
+from config import Settings
+
+
+settings = Settings()
 class SearchService:
     def web_search(self,query:str):
-        pass
+        return settings.TAVILY_API_KEY
