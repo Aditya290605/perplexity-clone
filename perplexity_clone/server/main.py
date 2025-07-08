@@ -1,11 +1,14 @@
 from fastapi import FastAPI
 
+from services.serach_service import SearchService
 from pydantic_model.chat_body import ChatBody
 
 
 app = FastAPI()
 
+serach_service = SearchService()
+
 @app.post("/")
-def sendResponse(body:ChatBody):
-    print(body.query)
-    return body.query
+def chat_endpoint(body:ChatBody):
+    serach_service.web_search()
+    
