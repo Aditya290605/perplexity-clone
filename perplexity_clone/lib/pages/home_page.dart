@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:perplexity_clone/services/socket_connection.dart';
 import 'package:perplexity_clone/theme/app_color.dart';
 
 import 'package:perplexity_clone/widgets/inputbox.dart';
 import 'package:perplexity_clone/widgets/side_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    SocketConnection().connect();
+  }
+
+  String fulltext = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,69 +34,82 @@ class HomePage extends StatelessWidget {
                 Inputbox(),
                 Spacer(),
 
-                Wrap(
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                      child: Text(
-                        'Pro',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.footerGrey,
+                StreamBuilder(
+                  stream: SocketConnection().searchresult,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    if (snapshot.data != null) {
+                      fulltext += snapshot.data!['data'];
+                      return Text(fulltext);
+                    }
+                    return Wrap(
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                          child: Text(
+                            'Pro',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.footerGrey,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                      child: Text(
-                        'Enterpirze',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.footerGrey,
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                          child: Text(
+                            'Enterpirze',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.footerGrey,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                      child: Text(
-                        'Store',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.footerGrey,
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                          child: Text(
+                            'Store',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.footerGrey,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                      child: Text(
-                        'Blogs',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.footerGrey,
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                          child: Text(
+                            'Blogs',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.footerGrey,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                      child: Text(
-                        'Career',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.footerGrey,
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                          child: Text(
+                            'Career',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.footerGrey,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                      child: Text(
-                        'English (English)',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.footerGrey,
+                        Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                          child: Text(
+                            'English (English)',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: AppColors.footerGrey,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
+                      ],
+                    );
+                  },
                 ),
                 const SizedBox(height: 20),
               ],

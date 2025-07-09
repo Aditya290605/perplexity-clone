@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:perplexity_clone/services/socket_connection.dart';
 import 'package:perplexity_clone/theme/app_color.dart';
 
-class Inputbox extends StatelessWidget {
+class Inputbox extends StatefulWidget {
   const Inputbox({super.key});
+
+  @override
+  State<Inputbox> createState() => _InputboxState();
+}
+
+class _InputboxState extends State<Inputbox> {
+  TextEditingController controller = TextEditingController();
+  String fulltext = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +29,7 @@ class Inputbox extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             width: MediaQuery.of(context).size.width * 0.5,
@@ -32,6 +42,7 @@ class Inputbox extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
+                  controller: controller,
                   minLines: 1,
                   maxLines: 10,
 
@@ -60,14 +71,19 @@ class Inputbox extends StatelessWidget {
                         Text("Attach"),
                       ],
                     ),
-                    Container(
-                      padding: EdgeInsets.all(9),
+                    GestureDetector(
+                      onTap: () {
+                        SocketConnection().chat(controller.text.trim());
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(9),
 
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.submitButton,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.submitButton,
+                        ),
+                        child: const Icon(Icons.arrow_right_alt),
                       ),
-                      child: const Icon(Icons.arrow_right_alt),
                     ),
                   ],
                 ),
