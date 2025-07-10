@@ -1,0 +1,12 @@
+fastapi==0.116.0
+numpy==2.3.1
+uvicorn==0.34.3
+httpx==0.28.1
+google-generativeai==0.8.3
+protobuf==6.31.1
+pydantic==2.11.7
+pydantic_settings==2.10.1
+python-dotenv==1.1.1
+sentence_transformers==5.0.0
+tavily_python==0.7.9
+trafilatura==2.0.0
