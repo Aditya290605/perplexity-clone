@@ -34,82 +34,69 @@ class _HomePageState extends State<HomePage> {
                 Inputbox(),
                 Spacer(),
 
-                StreamBuilder(
-                  stream: SocketConnection().searchresult,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-
-                    if (snapshot.data != null) {
-                      fulltext += snapshot.data!['data'];
-                      return Text(fulltext);
-                    }
-                    return Wrap(
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                          child: Text(
-                            'Pro',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.footerGrey,
-                            ),
-                          ),
+                Wrap(
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                      child: Text(
+                        'Pro',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.footerGrey,
                         ),
-                        Padding(
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                          child: Text(
-                            'Enterpirze',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.footerGrey,
-                            ),
-                          ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                      child: Text(
+                        'Enterpirze',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.footerGrey,
                         ),
-                        Padding(
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                          child: Text(
-                            'Store',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.footerGrey,
-                            ),
-                          ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                      child: Text(
+                        'Store',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.footerGrey,
                         ),
-                        Padding(
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                          child: Text(
-                            'Blogs',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.footerGrey,
-                            ),
-                          ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                      child: Text(
+                        'Blogs',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.footerGrey,
                         ),
-                        Padding(
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                          child: Text(
-                            'Career',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.footerGrey,
-                            ),
-                          ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                      child: Text(
+                        'Career',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.footerGrey,
                         ),
-                        Padding(
-                          padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-                          child: Text(
-                            'English (English)',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.footerGrey,
-                            ),
-                          ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+                      child: Text(
+                        'English (English)',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.footerGrey,
                         ),
-                      ],
-                    );
-                  },
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
               ],

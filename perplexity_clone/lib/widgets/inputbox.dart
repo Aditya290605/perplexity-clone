@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:perplexity_clone/pages/chat_screen.dart';
 import 'package:perplexity_clone/services/socket_connection.dart';
 import 'package:perplexity_clone/theme/app_color.dart';
 
@@ -74,6 +75,12 @@ class _InputboxState extends State<Inputbox> {
                     GestureDetector(
                       onTap: () {
                         SocketConnection().chat(controller.text.trim());
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ChatScreen(query: controller.text.trim()),
+                          ),
+                        );
                       },
                       child: Container(
                         padding: EdgeInsets.all(9),

@@ -25,9 +25,11 @@ class NavBarButtons extends StatelessWidget {
         ),
         isCollapsed
             ? const SizedBox()
-            : Text(
-                text,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            : Flexible(
+                child: Text(
+                  text,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
       ],
     );
